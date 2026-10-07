@@ -3,5 +3,5 @@
 - docs
 - images
 - pdfs
-- text files
+- textfiles
 - vidoes
