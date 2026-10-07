@@ -25,3 +25,4 @@ inotifywait -m -e create -e moved_to -- format "%f" "$WATCH_DIR" | while read -r
             mv "$WATCH_DIR/$FILE" "$TARGET_DIR/"
         fi
     fi
+done
