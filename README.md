@@ -1,7 +1,6 @@
-#Linux lab
+# Instruktioner till Linux lab
 
-```bash
-Instruktioner till Linux lab
+```bash 
 
  Skriva skript som automatiskt sorterar filer i directory "Downloads" av olika format i respektive directory:
 - textfiler med ändelse .txt och .md ska hamna i mappen "text files"
