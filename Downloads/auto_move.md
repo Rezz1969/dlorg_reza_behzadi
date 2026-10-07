@@ -14,7 +14,7 @@ mkdir -p "$TARGET_DIR"
 
 - skriptet letar efter nya filer och flyttar dem
 inotifywait -m -e create -e moved_to -- format "%f" "$WATCH_DIR" | while read -r FILES
-
+do
 -  kontrollerar vad filen har för suffix. Om det är fler filer med olika typer som ska flyttas till samma directory används "|" mellan olika filtyper i if-satsen
     if [[ "$FILE" == *.xx1 || "$FILE" == *.xx2 || "$FILE" == *.xx3]]; then
         if [ -f "$WATCH_DIR/$FILE" ]; then
