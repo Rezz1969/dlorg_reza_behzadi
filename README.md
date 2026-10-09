@@ -11,7 +11,7 @@
 - ljudfiler av typen .mp3 ska hamna i mappen "music"
 - videofiler av typen .mp4, .mov, .avi och .wmv ska hamna i mappen "videos"
 
-![Mappar i Downloads](Screenshots/Skärmbild_1.png)
+![Mappar i Downloads](~/Dokument/github/dlorg_reza_behzadi/Screenshots/Skärmbild_1.png)
 
 ## Skriptet är som följande:
 
