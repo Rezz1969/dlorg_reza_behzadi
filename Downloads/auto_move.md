@@ -1,28 +1,30 @@
-## Här är allmänna skriptet för att för att flytta filerna:
-
-```bash
 #!/usr/bin/env bash
 
-- Här är directoryn som ska bevakas
 WATCH_DIR="."
 
--  Här är directoryn som filen ska flyttas till
-TARGET_DIR="./xxx" 
-
-- Om directoryn som filen ska flyttas till inte finns, skapas den
-mkdir -p "$TARGET_DIR"
-
-- skriptet letar efter nya filer och flyttar dem
-inotifywait -m -e create -e moved_to -- format "%f" "$WATCH_DIR" | while read -r FILES
+inotifywait -m -e close_write -e moved_to --format "%f" "$WATCH_DIR" | while read -r FILE
 do
--  kontrollerar vad filen har för suffix. Om det är fler filer med olika typer som ska flyttas till samma directory används "|" mellan olika filtyper i if-satsen
-    if [[ "$FILE" == *.xx1 || "$FILE" == *.xx2 || "$FILE" == *.xx3]]; then
-        if [ -f "$WATCH_DIR/$FILE" ]; then
--  meddelar att filen flyttas till $TARGET_DIR:
-            echo "Fil: $FILE moved to Directory: $TARGET_DIR/"
+    if [[ -f "$WATCH_DIR/$FILE" ]]; then
 
-- flyttar filen till rätt directory därefter
+        EXT="${FILE##*.}"
+        EXT_LOWER=$(echo "$EXT" | tr '[:upper:]' '[:lower:]')
+
+        TARGET_DIR=""
+        case "$EXT_LOWER" in
+            txt|sh)             TARGET_DIR="textfiles" ;;
+            docx)               TARGET_DIR="docs" ;;
+            jpeg|jpg|png)       TARGET_DIR="images" ;;
+            pdf)                TARGET_DIR="pdfs" ;;
+            mp3|wav)            TARGET_DIR="music" ;;
+            mp4|mov|avi|wmv)    TARGET_DIR="videos" ;;
+            *)                  TARGET_DIR="" ;;
+        esac
+
+        if [[ -n "$TARGET_DIR" ]]; then
+            mkdir -p "$TARGET_DIR"
+            echo "File: $FILE moved to: $TARGET_DIR/"
             mv "$WATCH_DIR/$FILE" "$TARGET_DIR/"
         fi
     fi
 done
+
