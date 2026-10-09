@@ -15,3 +15,9 @@ Skriva skript som automatiskt sorterar filer i directory "Downloads" av olika fo
 
 
 ![Skärmbild på mappen textfiles](Screenshots/Skärmbild_textfiles.png)
+
+
+![Skärmbild på exempel textfiles](Screenshots/Strand_lokaldator.png)
+
+
+![Skärmbild på exempel music](Screenshots/You_could_be_mine.png)
